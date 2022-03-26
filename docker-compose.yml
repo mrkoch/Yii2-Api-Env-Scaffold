@@ -3,6 +3,7 @@ version: '3.2'
 services:
 
   frontend:
+    container_name: yii_frontend
     build: frontend
     ports:
       - 20080:80
@@ -13,6 +14,7 @@ services:
       - ./:/app
 
   backend:
+    container_name: yii_backend
     build: backend
     ports:
       - 20081:80
@@ -23,6 +25,7 @@ services:
       - ./:/app
 
   api:
+    container_name: yii_api
     build: api
     ports:
       - 20082:80
@@ -33,7 +36,13 @@ services:
       - ./:/app
 
   mysql:
-    image: mysql:5.7
+    container_name: yii_mysql
+    image: mysql:8.0
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysqldata:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=verysecret
       - MYSQL_DATABASE=yii2advanced
