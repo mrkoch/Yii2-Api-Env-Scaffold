@@ -56,10 +56,15 @@ vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
 
-INIT PROJECT
+```
+DOCKER
+    docker-compose -f "docker-compose.yml" up -d --build
+    docker exec -it yii_api bash
+```
 
 ```
-    INIT
+INIT
+     In container shell launch this commands:
         php init
         composer install or update
         create db in your DB Server
